@@ -41,8 +41,8 @@ export default function Chat() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-8">
-      <div className="max-w-3xl mx-auto bg-zinc-900 rounded-2xl border border-zinc-800 h-[85vh] flex flex-col">
+    <div className="h-screen bg-zinc-950 text-zinc-100 p-4 md:p-8">
+      <div className="w-full h-full bg-zinc-900 rounded-2xl border border-zinc-800 h-[85vh] flex flex-col">
         <div className="px-5 py-4 border-b border-zinc-800 flex items-center justify-between">
           <h1 className="text-xl font-semibold">Chat grupal</h1>
           <span
