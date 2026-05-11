@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-
 import { useAuth } from '../../../context/AuthContext'
 import { connectChatSocket } from '../api/chatSocket'
 
@@ -10,6 +9,18 @@ export const useChat = () => {
   const [messages, setMessages] = useState([])
   const [message, setMessage] = useState('')
   const [isConnected, setIsConnected] = useState(false)
+
+  const [toasts, setToasts] = useState([])
+
+  const pushToast = (text) => {
+    const id = Date.now()
+
+    setToasts((prev) => [...prev, { id, text }])
+
+    setTimeout(() => {
+      setToasts((prev) => prev.filter((t) => t.id !== id))
+    }, 3000)
+  }
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -31,17 +42,19 @@ export const useChat = () => {
 
         if (data.type === 'history') {
           setMessages(data.messages ?? [])
+          return
         }
 
-        if (
-          data.type === 'message' ||
-          data.type === 'system'
-        ) {
-          setMessages((prev) => [
-            ...prev,
-            data.message,
-          ])
+        if (data.type === 'message') {
+          setMessages((prev) => [...prev, data.message])
+          return
         }
+
+        if (data.type === 'system') {
+          pushToast(data.message.text)
+          return
+        }
+
       } catch (error) {
         console.error(error)
       }
@@ -77,5 +90,6 @@ export const useChat = () => {
     isConnected,
     sendMessage,
     currentUser: user,
+    toasts,
   }
 }

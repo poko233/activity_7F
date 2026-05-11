@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-
 import { useChat } from './hooks/useChat'
 
 const formatTime = (value) => {
@@ -26,7 +25,9 @@ export default function Chat() {
     setMessage,
     isConnected,
     sendMessage,
+    toasts,
   } = useChat()
+
   const messagesEndRef = useRef(null)
 
   useEffect(() => {
@@ -42,6 +43,18 @@ export default function Chat() {
 
   return (
     <div className="h-screen bg-zinc-950 text-zinc-100 p-4 md:p-8">
+
+      <div className="fixed top-4 right-4 space-y-2 z-50">
+        {toasts?.map((t) => (
+          <div
+            key={t.id}
+            className="bg-zinc-800 text-white px-4 py-2 rounded-lg shadow-lg"
+          >
+            {t.text}
+          </div>
+        ))}
+      </div>
+
       <div className="w-full h-full bg-zinc-900 rounded-2xl border border-zinc-800 h-[85vh] flex flex-col">
         <div className="px-5 py-4 border-b border-zinc-800 flex items-center justify-between">
           <h1 className="text-xl font-semibold">Chat grupal</h1>
@@ -83,9 +96,7 @@ export default function Chat() {
             className="flex-1 bg-zinc-950 border border-zinc-700 rounded-lg px-3 py-2 outline-none focus:border-cyan-500"
             placeholder="Escribe un mensaje..."
             value={message}
-            onChange={(event) =>
-              setMessage(event.target.value)
-            }
+            onChange={(event) => setMessage(event.target.value)}
           />
           <button
             type="submit"
