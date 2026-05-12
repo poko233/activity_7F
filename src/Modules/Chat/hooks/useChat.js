@@ -76,6 +76,7 @@ export const useChat = () => {
 
           setMessages((prev) =>
             prev.map((item) =>
+              // Refresca alias en mensajes ya cargados sin alterar el contenido original.
               Number(item.userId) === updatedUserId
                 ? { ...item, username: updatedUsername }
                 : item

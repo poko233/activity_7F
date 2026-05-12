@@ -1,5 +1,3 @@
-// components/sidebar/SidebarLogout.jsx
-
 import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../../../context/AuthContext";
@@ -55,7 +53,7 @@ export default function SidebarLogout() {
           <line x1="21" y1="12" x2="9" y2="12" />
         </svg>
 
-        <span>Cerrar sesión</span>
+        <span>Cerrar sesion</span>
       </button>
     </div>
   );

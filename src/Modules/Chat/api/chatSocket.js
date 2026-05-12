@@ -1,4 +1,5 @@
-const WS_URL = 'ws://localhost:3000/ws/chat'
+const WS_URL =
+  import.meta.env.VITE_WS_URL || 'ws://localhost:3000/ws/chat'
 
 export const connectChatSocket = ({ token }) => {
   const socketUrl = token
