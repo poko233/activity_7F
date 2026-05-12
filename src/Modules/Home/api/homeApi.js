@@ -1,7 +1,9 @@
-const API_URL = 'http://localhost:3000/api'
+import { API_BASE_URL } from '../../../config/backendUrls'
 
 export const getHomeMessage = async () => {
-  const response = await fetch(`${API_URL}/home`)
+  const response = await fetch(
+    `${API_BASE_URL}/home`
+  )
 
   if (!response.ok) {
     throw new Error('Error obteniendo datos')

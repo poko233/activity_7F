@@ -3,6 +3,7 @@ import { GoogleLogin } from '@react-oauth/google'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuth } from '../../context/AuthContext'
+import { API_BASE_URL } from '../../config/backendUrls'
 
 export default function Login() {
   const navigate = useNavigate()
@@ -14,7 +15,7 @@ export default function Login() {
   ) => {
     try {
       const response = await fetch(
-        'http://localhost:3000/api/auth/google',
+        `${API_BASE_URL}/auth/google`,
         {
           method: 'POST',
           headers: {
