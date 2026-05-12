@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import { useChat } from './hooks/useChat'
 
 const formatTime = (value) => {
   if (!value) {
@@ -18,7 +17,7 @@ const formatTime = (value) => {
   })
 }
 
-export default function Chat() {
+export default function Chat({ chat }) {
   const {
     messages,
     message,
@@ -26,7 +25,7 @@ export default function Chat() {
     isConnected,
     sendMessage,
     toasts,
-  } = useChat()
+  } = chat
 
   const messagesEndRef = useRef(null)
 

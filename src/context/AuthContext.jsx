@@ -36,6 +36,23 @@ export const AuthProvider = ({ children }) => {
     setUser(null)
   }
 
+  const updateUser = (partialUser) => {
+    setUser((prevUser) => {
+      if (!prevUser) {
+        return prevUser
+      }
+
+      const nextUser = {
+        ...prevUser,
+        ...partialUser,
+      }
+
+      localStorage.setItem('user', JSON.stringify(nextUser))
+
+      return nextUser
+    })
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -43,6 +60,7 @@ export const AuthProvider = ({ children }) => {
         loading,
         login,
         logout,
+        updateUser,
         isAuthenticated: !!user,
       }}
     >

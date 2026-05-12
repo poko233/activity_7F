@@ -3,7 +3,11 @@
 import SidebarProfile from './SidebarProfile'
 import SidebarLogout from './SidebarLogout'
 
-export default function Sidebar() {
+export default function Sidebar({
+  aliasInput,
+  setAliasInput,
+  updateAlias,
+}) {
   return (
     <aside className="w-80 bg-zinc-900 border-r border-zinc-800 flex flex-col h-screen">
       {/* HEADER */}
@@ -18,7 +22,11 @@ export default function Sidebar() {
       </div>
 
       {/* PROFILE */}
-      <SidebarProfile />
+      <SidebarProfile
+        aliasInput={aliasInput}
+        setAliasInput={setAliasInput}
+        updateAlias={updateAlias}
+      />
 
       {/* LOGOUT */}
       <SidebarLogout />
